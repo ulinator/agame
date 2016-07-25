@@ -10,3 +10,8 @@ function createChar() {
 	hero.addName(name);
 	console.log("Hero has a name", hero);
 }
+
+function randomizer(min,max) {
+	var number = Math.floor(Math.random() * max + min);
+	console.log(number);
+}
