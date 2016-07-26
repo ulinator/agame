@@ -6,4 +6,5 @@ function Monster(name, str, dex, sta, int, wis, exp) {
 	this.int = int || 1;
 	this.wis = wis || 1;
 	this.exp = exp || 1;
+	this.hp = this.sta + 10;
 }
