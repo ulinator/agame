@@ -6,6 +6,7 @@ function Actor(name, str, dex, sta, int, wis, exp) {
 	this.int = int || 1;
 	this.wis = wis || 1;
 	this.exp = exp || 0;
+	this.hp = this.sta + 10;
 }
 
 Actor.prototype.addName = function(promptName) {
