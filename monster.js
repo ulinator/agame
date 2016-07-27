@@ -8,3 +8,7 @@ function Monster(name, str, dex, sta, int, wis, exp) {
 	this.exp = exp || 1;
 	this.hp = this.sta + 10;
 }
+
+Monster.prototype.attack = function() {
+	return this["str"] + this["dex"] + randomizer(1,10);
+};
