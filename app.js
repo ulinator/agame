@@ -1,35 +1,27 @@
+// BUTTONS
 var button = document.querySelector("#createChar");
 var hero;
-
+var Timer = new Timer();
 button.addEventListener("click", function() {
   hero = createChar();
 });
 
-var nIntervId; // set interval id
-
 var buttonStart = document.querySelector("#startGame");
-
 buttonStart.addEventListener("click", function() {
-	console.log("clicked start game");
-	timer();
+	Timer.tick();
 });
 
 var buttonPause = document.querySelector("#pauseGame");
 buttonPause.addEventListener("click", function() {
-	console.log("clicked pause game");
-	timer(stop);
+	Timer.tickStop();
 });
 
+// CREATE MONSTER
 var monster = new Monster();
 console.log("Monster is: ", monster);
 
-// function tick() {
-// 	console.log("tick");
-// }
-
-// window.setInterval(tick, 2000);
-
-function createChar() {
+// CREATE HERO
+function createChar() { 
 	var name = prompt("What is thy name?");
 	hero = new Actor();
 	hero.addName(name);
@@ -46,6 +38,7 @@ function compare(att1,att2) {
 	}
 }
 
+// FIGHT MECHANICS
 function fight(hero, monster) {
 	var heroHP = hero["hp"];
 	var heroAtt = hero.attack();
@@ -74,25 +67,5 @@ function fight(hero, monster) {
 		console.log("You died.");
 	} else if (monHP <= 0) {
 		console.log("You KILLED THA MONSTER.");
-	}
- }
-
-function tick() {
-	nIntervId = window.setInterval(gameAction, 2000);
-}
-
-function tickStop() {
-    clearInterval(nIntervId);
-}
-
-function gameAction() {
-	console.log("tick");
-}
-
-function timer(param) {
-	if (param === stop) {
-		tickStop();
-	} else {
-		tick();
 	}
 }
