@@ -3,3 +3,9 @@
 2. dodac wybor klasy postaci
 3. dodac obiekt wroga
 4. dodac ekran (wyswietlacz)
+
+logika gry:
+co 5 sekund zdarzenie
+walka, znalezisko, interakcja z postacia nieagresywna
+
+walka = atakSpeed Date.now(); zwraca czas w milisekundach

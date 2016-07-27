@@ -5,6 +5,21 @@ button.addEventListener("click", function() {
   hero = createChar();
 });
 
+var nIntervId; // set interval id
+
+var buttonStart = document.querySelector("#startGame");
+
+buttonStart.addEventListener("click", function() {
+	console.log("clicked start game");
+	timer();
+});
+
+var buttonPause = document.querySelector("#pauseGame");
+buttonPause.addEventListener("click", function() {
+	console.log("clicked pause game");
+	timer(stop);
+});
+
 var monster = new Monster();
 console.log("Monster is: ", monster);
 
@@ -23,11 +38,11 @@ function createChar() {
 }
 
 function compare(att1,att2) {
-	if (att1 != att2) {
+	if ( att1.attack() != att2.attack() ) {
 		return Math.max(att1, att2);
 	} else {
 		console.log("draw");
-		return 0;
+		return null;
 	}
 }
 
@@ -46,7 +61,7 @@ function fight(hero, monster) {
 
 		if (clashWinner === heroAtt) {
 			console.log("hero won");
-			monHP = monHP - heroAtt;
+			monHP = monHP - heroAtt
 			console.log("monster hp is down to: ", monHP);
 		} else if (clashWinner === monAtt)  {
 			console.log("monster won");
@@ -62,27 +77,22 @@ function fight(hero, monster) {
 	}
  }
 
-// function attack(heroAtt, monAtt) {
-// 	var heroRand = randomizer(1, 10);
-// 	var heroScore = heroAtt + heroRand;
-// 	console.log("heroScore", heroScore);
+function tick() {
+	nIntervId = window.setInterval(gameAction, 2000);
+}
 
-// 	var monRand = randomizer(1, 10);
-// 	var monScore = monAtt + monRand;
-// 	console.log("monScore", monScore);
+function tickStop() {
+    clearInterval(nIntervId);
+}
 
-// 	console.log("Your attack: " + heroScore + " monster attack: " + monScore);
+function gameAction() {
+	console.log("tick");
+}
 
-// 	if (heroScore > monScore) {
-// 		console.log("You hit the monstah!");
-// 		monHP = monHP - heroScore;
-// 		console.log("You hit the monstah for " + heroScore + " dmg");
-// 	} else if (monScore > heroScore) {
-// 		console.log("OUCH! You got hit!");
-// 		heroHP = heroHP - monScore;
-// 		console.log("You got hit by the monstah for " + monScore + " dmg");
-// 	} else {
-// 		console.log("A parry!");
-// 	}
-
-// }
+function timer(param) {
+	if (param === stop) {
+		tickStop();
+	} else {
+		tick();
+	}
+}

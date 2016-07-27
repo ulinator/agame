@@ -18,6 +18,6 @@ Actor.prototype.addStat = function(stat, quan) {
 	this[stat] = currStat + quan;
 };
 
-Actor.prototype.attack = function() {
+Actor.prototype.calculateAttack = function() {
 	return this["str"] + this["dex"] + randomizer(1,10);
 };
