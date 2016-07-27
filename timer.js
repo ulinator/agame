@@ -1,12 +1,13 @@
-function Timer(state) {
-	this.state = "paused";
+function Timer(state, callback) {
+	this.state = state || "paused";
+	this.callback = callback;
 }
 
 var nIntervId; // set interval id
 
 Timer.prototype.tick = function() {
 	if (this.state === "paused") {
-		nIntervId = window.setInterval(gameAction, 2000);
+		nIntervId = window.setInterval(this.callback, 2000);
 		this.state = "active";
 	} else if (this.state === "active") {
 		console.log("Timer is already running");
@@ -23,7 +24,3 @@ Timer.prototype.tickStop = function() {
 		this.state = "paused";
 	}
 };
-
-function gameAction() {
-	console.log("tick");
-}

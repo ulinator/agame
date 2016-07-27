@@ -1,19 +1,20 @@
 // BUTTONS
 var button = document.querySelector("#createChar");
 var hero;
-var Timer = new Timer();
+var timer = new Timer("paused", gameAction);
+
 button.addEventListener("click", function() {
   hero = createChar();
 });
 
 var buttonStart = document.querySelector("#startGame");
 buttonStart.addEventListener("click", function() {
-	Timer.tick();
+	timer.tick();
 });
 
 var buttonPause = document.querySelector("#pauseGame");
 buttonPause.addEventListener("click", function() {
-	Timer.tickStop();
+	timer.tickStop();
 });
 
 // CREATE MONSTER
@@ -21,7 +22,7 @@ var monster = new Monster();
 console.log("Monster is: ", monster);
 
 // CREATE HERO
-function createChar() { 
+function createChar() {
 	var name = prompt("What is thy name?");
 	hero = new Actor();
 	hero.addName(name);
@@ -68,4 +69,8 @@ function fight(hero, monster) {
 	} else if (monHP <= 0) {
 		console.log("You KILLED THA MONSTER.");
 	}
+}
+
+function gameAction() {
+	console.log("tick");
 }
