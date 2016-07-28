@@ -9,7 +9,7 @@ button.addEventListener("click", function() {
 
 var buttonStart = document.querySelector("#startGame");
 buttonStart.addEventListener("click", function() {
-	timer.tick();
+	timer.tick(1000);
 });
 
 var buttonPause = document.querySelector("#pauseGame");

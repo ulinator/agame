@@ -3,6 +3,9 @@
 2. dodac wybor klasy postaci
 3. dodac obiekt wroga
 4. dodac ekran (wyswietlacz)
+5. dodac losowanie zdarzenia
+
+
 
 logika gry:
 co 5 sekund zdarzenie

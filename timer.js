@@ -5,9 +5,9 @@ function Timer(state, callback) {
 
 var nIntervId; // set interval id
 
-Timer.prototype.tick = function() {
+Timer.prototype.tick = function(interval) {
 	if (this.state === "paused") {
-		nIntervId = window.setInterval(this.callback, 2000);
+		nIntervId = window.setInterval(this.callback, interval);
 		this.state = "active";
 	} else if (this.state === "active") {
 		console.log("Timer is already running");

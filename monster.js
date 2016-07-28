@@ -1,5 +1,5 @@
 function Monster(name, str, dex, sta, int, wis, exp) {
-	this.name = name || "Unnamed";
+	this.name = name || "Goblin peasant";
 	this.str = str || 1;
 	this.dex = dex || 1;
 	this.sta = sta || 1;
