@@ -40,7 +40,7 @@ Actor.prototype.levelUp = function(quan) {
 	}
 };
 
-Actor.prototype.calculateAttack = function() {
+Actor.prototype.getAttack = function() {
 	return this["str"] + this["dex"] + randomizer(1,10);
 };
 

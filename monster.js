@@ -6,9 +6,11 @@ function Monster(name, str, dex, sta, int, wis, exp) {
 	this.int = int || 1;
 	this.wis = wis || 1;
 	this.exp = exp || 1;
-	this.hp = this.sta + 10;
+	this.getHP = function() {
+		return this["sta"] + 10;
+	};
 }
 
-Monster.prototype.attack = function() {
+Monster.prototype.getAttack = function() {
 	return this["str"] + this["dex"] + randomizer(1,10);
 };

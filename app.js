@@ -9,7 +9,7 @@ button.addEventListener("click", function() {
 
 var buttonStart = document.querySelector("#startGame");
 buttonStart.addEventListener("click", function() {
-	timer.tick(1000);
+	timer.tick(2000);
 });
 
 var buttonPause = document.querySelector("#pauseGame");
@@ -35,54 +35,67 @@ function gameAction() {
 	var randomExpression = randomizer(1,100);
 	console.log(randomExpression);
 
-	if (randomExpression < 33) {
+	if (randomExpression < 99) {
 		console.log("It's a fight!");
-	} else if (randomExpression < 66) {
+		fight(hero,monster);
+	} else if (randomExpression < 100) {
 		console.log("It's a KISS!");
 	} else {
 		console.log("Smieszki he he");
 	}
 };
 
-function compare(att1,att2) {
-	if ( att1.attack() != att2.attack() ) {
-		return Math.max(att1, att2);
-	} else {
-		console.log("draw");
-		return null;
-	}
-};
 
 // FIGHT MECHANICS
-// function fight(hero, monster) {
-// 	var heroHP = hero["hp"];
-// 	var heroAtt = hero.attack();
-// 	console.log("hero HP ", heroHP + "hero Att: ", heroAtt);
+function fight(attacker, defender) {
+	var ticker = new Timer("paused", clash);
+	timer.tickStop();
 
-// 	var monHP = monster["hp"];
-// 	var monAtt = monster.attack();
-// 	console.log("monster HP ", monHP + "monster Att: ", monAtt);
+	var heroHP = hero.getHP();
+	var heroAtt = hero.getAttack();
+	console.log("hero HP ", heroHP + "hero Att: ", heroAtt);
 
-// 	if ( (heroHP > 0) && (monHP > 0) ) {
-// 		console.log("Attaaaaack!");
-// 		var clashWinner = compare(heroAtt,monAtt);
+	var monHP = monster.getHP();
+	var monAtt = monster.getAttack();
+	console.log("monster HP ", monHP + "monster Att: ", monAtt);
 
-// 		if (clashWinner === heroAtt) {
-// 			console.log("hero won");
-// 			monHP = monHP - heroAtt
-// 			console.log("monster hp is down to: ", monHP);
-// 		} else if (clashWinner === monAtt)  {
-// 			console.log("monster won");
-// 			heroHP = heroHP - monAtt;
-// 		} else {
-// 			console.log("parry");
-// 		}
+	var clashWinner = function(attacker,defender) {
+		var val1 = attacker.getAttack();
+		var val2 = defender.getAttack();
 
-// 	} else if (heroHP <= 0) {
-// 		console.log("You died.");
-// 	} else if (monHP <= 0) {
-// 		console.log("You KILLED THA MONSTER.");
-// 	}
-// };
+		if ( val1 > val2 ) {
+			return attacker;
+		} else if (val1 < val2 ) {
+			return defender;
+		} else {
+			return null;
+		}
+	};
 
+	var clash = function(attacker, defender) {
+		if (clashWinner === attacker) {
+			console.log("hero won");
+			monHP = monHP - heroAtt;
+			console.log("monster hp is down to: ", monHP);
+		} else if (clashWinner === defender)  {
+			console.log("monster won");
+			heroHP = heroHP - monAtt;
+			console.log("hero hp is down to: ", heroHP);
+		} else {
+			console.log("parry");
+			return null;
+		}
+	};
+
+
+	while ( (heroHP <= 0) || (monHP <= 0) ) {
+		console.log("fight!");
+		setTimeout(function(){
+			console.log("fight round");
+			// clash(hero, monster);
+		}, 1000);
+		// timer.tick(2000);
+	};
+
+};
 
