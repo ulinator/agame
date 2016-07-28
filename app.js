@@ -28,7 +28,21 @@ function createChar() {
 	hero.addName(name);
 	console.log("Hero has a name", hero);
 	return hero;
-}
+};
+
+function gameAction() {
+	console.log("tick");
+	var randomExpression = randomizer(1,100);
+	console.log(randomExpression);
+
+	if (randomExpression < 33) {
+		console.log("It's a fight!");
+	} else if (randomExpression < 66) {
+		console.log("It's a KISS!");
+	} else {
+		console.log("Smieszki he he");
+	}
+};
 
 function compare(att1,att2) {
 	if ( att1.attack() != att2.attack() ) {
@@ -37,40 +51,38 @@ function compare(att1,att2) {
 		console.log("draw");
 		return null;
 	}
-}
+};
 
 // FIGHT MECHANICS
-function fight(hero, monster) {
-	var heroHP = hero["hp"];
-	var heroAtt = hero.attack();
-	console.log("hero HP ", heroHP + "hero Att: ", heroAtt);
+// function fight(hero, monster) {
+// 	var heroHP = hero["hp"];
+// 	var heroAtt = hero.attack();
+// 	console.log("hero HP ", heroHP + "hero Att: ", heroAtt);
 
-	var monHP = monster["hp"];
-	var monAtt = monster.attack();
-	console.log("monster HP ", monHP + "monster Att: ", monAtt);
+// 	var monHP = monster["hp"];
+// 	var monAtt = monster.attack();
+// 	console.log("monster HP ", monHP + "monster Att: ", monAtt);
 
-	if ( (heroHP > 0) && (monHP > 0) ) {
-		console.log("Attaaaaack!");
-		var clashWinner = compare(heroAtt,monAtt);
+// 	if ( (heroHP > 0) && (monHP > 0) ) {
+// 		console.log("Attaaaaack!");
+// 		var clashWinner = compare(heroAtt,monAtt);
 
-		if (clashWinner === heroAtt) {
-			console.log("hero won");
-			monHP = monHP - heroAtt
-			console.log("monster hp is down to: ", monHP);
-		} else if (clashWinner === monAtt)  {
-			console.log("monster won");
-			heroHP = heroHP - monAtt;
-		} else {
-			console.log("parry");
-		}
+// 		if (clashWinner === heroAtt) {
+// 			console.log("hero won");
+// 			monHP = monHP - heroAtt
+// 			console.log("monster hp is down to: ", monHP);
+// 		} else if (clashWinner === monAtt)  {
+// 			console.log("monster won");
+// 			heroHP = heroHP - monAtt;
+// 		} else {
+// 			console.log("parry");
+// 		}
 
-	} else if (heroHP <= 0) {
-		console.log("You died.");
-	} else if (monHP <= 0) {
-		console.log("You KILLED THA MONSTER.");
-	}
-}
+// 	} else if (heroHP <= 0) {
+// 		console.log("You died.");
+// 	} else if (monHP <= 0) {
+// 		console.log("You KILLED THA MONSTER.");
+// 	}
+// };
 
-function gameAction() {
-	console.log("tick");
-}
+
