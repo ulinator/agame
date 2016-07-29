@@ -14,11 +14,11 @@ Game.prototype.changeState = function(param) {
 Game.prototype.fight = function(attacker, defender) {
 	game.state = "fight";
 
-	var heroHP = hero.getHP();
+	var heroHP = hero.HP;
 	var heroAtt = hero.getAttack();
 	console.log("hero HP ", heroHP + "hero Att: ", heroAtt);
 
-	var monHP = monster.getHP();
+	var monHP = monster.HP;
 	var monAtt = monster.getAttack();
 	console.log("monster HP ", monHP + "monster Att: ", monAtt);
 
@@ -40,29 +40,31 @@ Game.prototype.fight = function(attacker, defender) {
 
 		if (result === attacker) {
 			console.log("hero won");
-			monHP = monHP - heroAtt;
+			defender.HP = monHP - heroAtt;
 
 			if (monHP <= 0) {
 				console.log("You killed the " + defender.name + "!");
-				attacker.exp = attacker.exp + defender.exp;
+				attacker.addExp(defender["exp"]);
 				game.state = "search";
-				return null;
+				monster = new Monster();
+				return 1;
 			} else {
 				console.log("monster hp is down to: ", monHP);
 				return monHP; 
+				return null;
 			};
 		} else if (result === defender)  {
 			console.log("monster won");
-			heroHP = heroHP - monAtt;
+			attacker.HP = heroHP - monAtt;
 
 			if (heroHP <= 0) {
 				console.log("You were mortally hit by" + defender.name + ".");
 				game.state = "inactive";
 				console.log("You died.");
-				return null;
+				return 1;
 			} else {
 				console.log("Your hp is down to: ", heroHP);
-				return heroHP; 
+				return null; 
 			};
 		} else {
 			console.log("parry");
@@ -71,5 +73,6 @@ Game.prototype.fight = function(attacker, defender) {
 	};
 
 	round(attacker,defender);
+	console.log("pozostale hp twoje" + attacker.HP);
 
 };

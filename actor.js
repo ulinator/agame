@@ -1,4 +1,4 @@
-function Actor(name, str, dex, sta, int, wis, exp, lvl, spec) {
+function Actor(name, str, dex, sta, int, wis, exp, lvl, spec, HP, maxHP) {
 	this.name = name || "Unnamed";
 	this.str = str || 2;
 	this.dex = dex || 2;
@@ -8,10 +8,13 @@ function Actor(name, str, dex, sta, int, wis, exp, lvl, spec) {
 	this.exp = exp || 0;
 	this.lvl = lvl || 1;
 	this.spec = spec || "Adventurer";
-	this.getHP = function() {
-		return this["sta"] + 10;
-	};
+	this.HP = HP || 70;
+	this.maxHP = maxHP || 70;
 }
+
+Actor.prototype.setHP = function(hp) {
+	this["HP"] = (this["sta"] * 10 + 50) + hp;
+};
 
 Actor.prototype.addName = function(promptName) {
 	this.name = promptName;
