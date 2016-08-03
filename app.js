@@ -36,12 +36,15 @@ function gameAction() {
 	var randomExpression = randomizer(1,100);
 	console.log(randomExpression);
 
-	if (randomExpression < 59) {
-		console.log("It's a fight!");
+	if (game.state === "fight") {
+		console.log("gamestate is ", game.state + " and so we fight!");
+		game.fight(hero,monster);
+
+	} else if (randomExpression < 59) {
+		console.log("It's a FIGHT!");
 		if ( game.fight(hero,monster) ) {
 			game.fight(hero,monster);
 		}
-
 	} else if (randomExpression < 100) {
 		console.log("It's a KISS!");
 	} else {

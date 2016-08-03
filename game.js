@@ -14,21 +14,18 @@ Game.prototype.changeState = function(param) {
 Game.prototype.fight = function(attacker, defender) {
 	game.state = "fight";
 
-	var heroHP = hero.HP;
-	var heroAtt = hero.getAttack();
+	var heroHP = attacker.HP;
+	var heroAtt = attacker.getAttack();
 	console.log("hero HP ", heroHP + "hero Att: ", heroAtt);
 
-	var monHP = monster.HP;
-	var monAtt = monster.getAttack();
+	var monHP = defender.HP;
+	var monAtt = defender.getAttack();
 	console.log("monster HP ", monHP + "monster Att: ", monAtt);
 
 	var resolveRound = function(attacker,defender) {
-		var val1 = attacker.getAttack();
-		var val2 = defender.getAttack();
-
-		if ( val1 > val2 ) {
+		if ( heroAtt > monAtt ) {
 			return attacker;
-		} else if (val1 < val2 ) {
+		} else if (heroAtt < monAtt ) {
 			return defender;
 		} else {
 			return null;
@@ -39,40 +36,39 @@ Game.prototype.fight = function(attacker, defender) {
 		var result = resolveRound(attacker,defender);
 
 		if (result === attacker) {
-			console.log("hero won");
-			defender.HP = monHP - heroAtt;
+			console.log("=== HERO WON ===");
+			defender["HP"] = defender["HP"] - heroAtt;
 
-			if (monHP <= 0) {
+			if (defender["HP"] < 1) {
 				console.log("You killed the " + defender.name + "!");
 				attacker.addExp(defender["exp"]);
 				game.state = "search";
 				monster = new Monster();
-				return 1;
-			} else {
-				console.log("monster hp is down to: ", monHP);
-				return monHP; 
 				return null;
+			} else {
+				console.log("monster hp is down to: ", defender["HP"]);
+				return 1;
 			};
+
 		} else if (result === defender)  {
 			console.log("monster won");
-			attacker.HP = heroHP - monAtt;
+			attacker["HP"] = attacker["HP"] - monAtt;
 
-			if (heroHP <= 0) {
+			if (attacker["HP"] < 1) {
 				console.log("You were mortally hit by" + defender.name + ".");
 				game.state = "inactive";
 				console.log("You died.");
-				return 1;
+				return null;
 			} else {
-				console.log("Your hp is down to: ", heroHP);
-				return null; 
+				console.log("Your hp is down to: ", attacker["HP"]);
+				return 1; 
 			};
 		} else {
 			console.log("parry");
-			return null;
+			return 1;
 		}
 	};
 
 	round(attacker,defender);
-	console.log("pozostale hp twoje" + attacker.HP);
-
+	console.log("pozostale hp twoje " + attacker["HP"]);
 };
