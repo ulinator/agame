@@ -17,6 +17,10 @@ Monster.prototype.getAttack = function() {
 	return this["str"] + this["dex"] + randomizer(1,10);
 };
 
+Monster.prototype.getDmg = function() {
+	return this["str"] + randomizer(1,6);
+};
+
 Monster.prototype.isAlive = function() {
 	if ( this["HP"] < 1 ) {
 		return null;
@@ -24,3 +28,14 @@ Monster.prototype.isAlive = function() {
 		return;
 	}
 };
+
+Monster.prototype.createMon = function(quan) {
+	this.name = "Goblin" + quan;
+	this.str = randomizer(quan/2, quan);
+	this.dex = randomizer(quan/2, quan);
+	this.sta = randomizer(quan/2, quan);
+	this.int = randomizer(quan/2, quan);
+	this.wis = randomizer(quan/2, quan);
+	this.exp = quan;
+	this.setHP(quan);
+}

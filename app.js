@@ -27,7 +27,7 @@ function createChar() {
 	var name = prompt("What is thy name?");
 	hero = new Actor();
 	hero.addName(name);
-	console.log("Hero has a name", hero);
+	console.log("Hero has a name:", hero.name);
 	return hero;
 };
 
@@ -51,7 +51,7 @@ function createChar() {
 // };
 
 function gameRound() {
-	console.log("tick");
+	// console.log("tick");
 	var randomExpression = randomizer(1,100);
 
 	if (game.state === "fight") {
@@ -60,12 +60,14 @@ function gameRound() {
 			monster.attack(hero);  
 		}
 	} else {
-		if (randomExpression < 80) {
+		if (randomExpression < 66) {
 			monster = new Monster();
+			monster.createMon(hero["lvl"]);
 			game["state"] = "fight";
 			console.log("A wild " + monster.name + " appears!");
 		} else if (randomExpression < 100) {
 			console.log("You tread carefully through the dungeon...");
+			hero.healHP( hero["maxHP"]/15 );
 		}
 	}
 };

@@ -12,11 +12,28 @@ function Actor(name, str, dex, sta, int, wis, exp, lvl, spec, HP, maxHP) {
 	this.maxHP = maxHP || 70;
 }
 
-Actor.prototype.setHP = function(quan) {
-	this["maxHP"] = this["sta"] * 10 + 100 + quan;
+Actor.prototype.healHP = function(quan) {
+	var quanFloored = Math.floor(quan);
+
+	if ( this["HP"] >= this["maxHP"] ) {
+		this["HP"] = this["maxHP"];
+		return;
+	} else  {
+		this["HP"] = this["HP"] + quanFloored;
+		console.log("You regenerate " + quanFloored + " HP.");
+
+		if ( this["HP"] > this["maxHP"] ) {
+			this["HP"] = this["maxHP"];
+			console.log("You regenerate to full, gangsta.");
+		}
+	}
 };
 
 Actor.prototype.setHP = function() {
+	this["maxHP"] = this["sta"] * 10 + 100;
+};
+
+Actor.prototype.resetHP = function() {
 	this["HP"] = this["maxHP"];
 };
 
@@ -26,6 +43,10 @@ Actor.prototype.addName = function(promptName) {
 
 Actor.prototype.getAttack = function() {
 	return this["str"] + this["dex"] + randomizer(1,10);
+};
+
+Actor.prototype.getDmg = function() {
+	return this["str"] + randomizer(1,6);
 };
 
 Actor.prototype.isAlive = function() {
@@ -47,9 +68,14 @@ Actor.prototype.addStat = function(stat, quan) {
 };
 
 Actor.prototype.addExp = function(quan) {
+	var cap = this.lvl * 5 * this.lvl * 1.2;
+
+	// var levelCap = function() {
+	// 	cap = this.lvl * 10;
+	// };
 	this["exp"] = this["exp"] + quan;
 
-	if (this["exp"]%10 === 0) {
+	if (this["exp"] >= cap) {
 		console.log("LEVEL UP!");
 		this.levelUp(1);
 		console.log("You are now level: " + this["lvl"] + ".");
@@ -66,7 +92,7 @@ Actor.prototype.levelUp = function(quan) {
 		this.addStat("int", quan);
 		this.addStat("wis", quan);
 		this.addStat("lvl", quan);
-		this["maxHP"] = this.setHP(50);
+		this.setHP();
 		this.resetHP;
 	} else if (this.spec === "Barbarian") {
 		this.addStat("str", quan*1.5);
@@ -75,7 +101,7 @@ Actor.prototype.levelUp = function(quan) {
 		this.addStat("int", quan/4);
 		this.addStat("wis", quan/2);
 		this.addStat("lvl", quan);
-		this["maxHP"] = this.setHP(50);
+		this.setHP();
 		this.resetHP;
 	};
 };

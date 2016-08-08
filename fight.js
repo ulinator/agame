@@ -7,7 +7,8 @@ function Fight(attacker, defender) {
 Fight.prototype.continue = function(attacker, defender) {
 	var att = attacker.getAttack();
 	var def = defender.getAttack();
-
+	var attDMG = attacker.getDmg();
+	var defDMG = defender.getDmg();
 	var resolveRound = function(attacker,defender) {
 
 		if ( att  > def ) {
@@ -24,8 +25,8 @@ Fight.prototype.continue = function(attacker, defender) {
 
 		if (result === attacker) {
 			console.log("=== YOU WON ===");
-			defender["HP"] = defender["HP"] - att;
-			console.log("You hit " + monster.name + " for " + att + "!");
+			defender["HP"] = defender["HP"] - attDMG;
+			console.log("You hit " + monster.name + " for " + attDMG + "!");
 
 			if (defender["HP"] < 1) {
 				console.log("You killed the " + defender.name + ".");
@@ -38,15 +39,15 @@ Fight.prototype.continue = function(attacker, defender) {
 
 		} else if (result === defender)  {
 			console.log("monster won");
-			attacker["HP"] = attacker["HP"] - def;
-			console.log("You got hit by " + monster.name + " for " + def + ".");
+			attacker["HP"] = attacker["HP"] - defDMG;
+			console.log("You got hit by " + monster.name + " for " + defDMG + ".");
 
 			if (attacker["HP"] < 1) {
-				console.log("You were mortally hit by" + defender.name + "...");
-				game.state = "search";
+				console.log("You were mortally hit by " + defender.name + "...");
+				game.changeState("inactive");
 				console.log("...you died.");
 			} else {
-				console.log("Your hp is down to: ", attacker["HP"] + ".");
+				console.log("Your hp is down to: " + attacker["HP"] + ".");
 				game.state = "fight";
 			};
 		} else {
