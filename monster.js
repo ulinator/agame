@@ -9,6 +9,18 @@ function Monster(name, str, dex, sta, int, wis, exp) {
 	this.HP = 10;
 }
 
+Monster.prototype.setHP = function(hp) {
+	this["HP"] = this["sta"] * 10 + hp;
+};
+
 Monster.prototype.getAttack = function() {
 	return this["str"] + this["dex"] + randomizer(1,10);
+};
+
+Monster.prototype.isAlive = function() {
+	if ( this["HP"] < 1 ) {
+		return null;
+	} else {
+		return;
+	}
 };

@@ -12,17 +12,50 @@ function Actor(name, str, dex, sta, int, wis, exp, lvl, spec, HP, maxHP) {
 	this.maxHP = maxHP || 70;
 }
 
-Actor.prototype.setHP = function(hp) {
-	this["HP"] = (this["sta"] * 10 + 50) + hp;
+Actor.prototype.setHP = function(quan) {
+	this["maxHP"] = this["sta"] * 10 + 100 + quan;
+};
+
+Actor.prototype.setHP = function() {
+	this["HP"] = this["maxHP"];
 };
 
 Actor.prototype.addName = function(promptName) {
 	this.name = promptName;
 };
 
+Actor.prototype.getAttack = function() {
+	return this["str"] + this["dex"] + randomizer(1,10);
+};
+
+Actor.prototype.isAlive = function() {
+	if ( this["HP"] < 1 ) {
+		return null;
+	} else {
+		return;
+	}
+};
+
+Actor.prototype.attack = function(target) {
+	var fight = new Fight();
+	fight.continue(this,target);
+};
+
 Actor.prototype.addStat = function(stat, quan) {
 	var currStat = this[stat];
 	this[stat] = currStat + quan;
+};
+
+Actor.prototype.addExp = function(quan) {
+	this["exp"] = this["exp"] + quan;
+
+	if (this["exp"]%10 === 0) {
+		console.log("LEVEL UP!");
+		this.levelUp(1);
+		console.log("You are now level: " + this["lvl"] + ".");
+	} else {
+		console.log("You gain: " + quan + " exp.");
+	}
 };
 
 Actor.prototype.levelUp = function(quan) {
@@ -33,6 +66,8 @@ Actor.prototype.levelUp = function(quan) {
 		this.addStat("int", quan);
 		this.addStat("wis", quan);
 		this.addStat("lvl", quan);
+		this["maxHP"] = this.setHP(50);
+		this.resetHP;
 	} else if (this.spec === "Barbarian") {
 		this.addStat("str", quan*1.5);
 		this.addStat("dex", quan*1.1);
@@ -40,21 +75,7 @@ Actor.prototype.levelUp = function(quan) {
 		this.addStat("int", quan/4);
 		this.addStat("wis", quan/2);
 		this.addStat("lvl", quan);
-	}
-};
-
-Actor.prototype.getAttack = function() {
-	return this["str"] + this["dex"] + randomizer(1,10);
-};
-
-Actor.prototype.addExp = function(quan) {
-	this["exp"] = this["exp"] + quan;
-
-	if (this["exp"]%10 === 0) {
-		console.log("LEVEL UP!");
-		this.levelUp(1);
-		console.log("You are now level: " + this["lvl"]);
-	} else {
-		console.log("You gain: " + quan + " exp!");
-	}
+		this["maxHP"] = this.setHP(50);
+		this.resetHP;
+	};
 };

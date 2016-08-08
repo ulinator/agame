@@ -11,14 +11,14 @@ Timer.prototype.tick = function(interval) {
 		nIntervId = window.setInterval(this.callback, interval);
 		this.state = "active";
 	} else if (this.state === "active") {
-		console.log("Timer is already running");
+		console.log("Timer is already running.");
 		return null;
 	}
 };
 
 Timer.prototype.tickStop = function() {
 	if (this.state === "paused") {
-		console.log("Timer is already paused");
+		console.log("Timer is already paused.");
 		return null;
 	} else if (this.state === "active") {
 		console.log("Pause");
