@@ -5,19 +5,19 @@ var hero = new Actor();
 var timer = new Timer("paused", gameRound);
 
 button.addEventListener("click", function() {
-  hero = createChar();
+	hero = createChar();
 });
 
 var buttonStart = document.querySelector("#startGame");
 buttonStart.addEventListener("click", function() {
 	game.changeState("search");
-  timer.start(2000);
+	timer.start(2000);
 });
 
 var buttonPause = document.querySelector("#pauseGame");
 buttonPause.addEventListener("click", function() {
 	game.changeState("inactive");
-  timer.stop();
+	timer.stop();
 });
 
 // CREATE MONSTER
@@ -58,16 +58,16 @@ function gameRound() {
 
 	if (game.state === "fight") {
 		game["fight"].continue();
-    if (!monster.isAlive()) {
-      game.changeState("search");
-      game["fight"] = null;
-    }
+		if (!monster.isAlive()) {
+			game.changeState("search");
+			game["fight"] = null;
+		}
 	} else if (game.state === "search") {
 		if (randomExpression < 66) {
 			monster = new Monster();
 			monster.createMon(hero["lvl"]);
 			game.changeState("fight");
-      game["fight"] = new Fight(hero, monster);
+			game["fight"] = new Fight(hero, monster);
 			console.log("A wild " + monster.name + " appears!");
 		} else if (randomExpression < 100) {
 			console.log("You tread carefully through the dungeon...");
