@@ -22,11 +22,7 @@ Monster.prototype.getDmg = function() {
 };
 
 Monster.prototype.isAlive = function() {
-	if ( this["HP"] < 1 ) {
-		return null;
-	} else {
-		return;
-	}
+	return this["HP"] > 1;
 };
 
 Monster.prototype.createMon = function(quan) {

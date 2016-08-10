@@ -4,12 +4,12 @@ function Fight(attacker, defender) {
 	this.state = "inactive";
 }
 
-Fight.prototype.continue = function(attacker, defender) {
-	var att = attacker.getAttack();
-	var def = defender.getAttack();
-	var attDMG = attacker.getDmg();
-	var defDMG = defender.getDmg();
-	var resolveRound = function(attacker,defender) {
+Fight.prototype.continue = function() {
+	var att = this.attacker.getAttack();
+	var def = this.defender.getAttack();
+	var attDMG = this.attacker.getDmg();
+	var defDMG = this.defender.getDmg();
+	var resolveRound = function(attacker, defender) {
 
 		if ( att  > def ) {
 			return attacker;
@@ -31,10 +31,8 @@ Fight.prototype.continue = function(attacker, defender) {
 			if (defender["HP"] < 1) {
 				console.log("You killed the " + defender.name + ".");
 				attacker.addExp(defender["exp"]);
-				game.state = "search";
 			} else {
 				console.log("Monster is down to: " + defender["HP"] + " HP.");
-				game.state = "fight";
 			};
 
 		} else if (result === defender)  {
@@ -48,15 +46,13 @@ Fight.prototype.continue = function(attacker, defender) {
 				console.log("...you died.");
 			} else {
 				console.log("Your hp is down to: " + attacker["HP"] + ".");
-				game.state = "fight";
 			};
 		} else {
 			console.log("You fight fiercely but not to prevail.");
-			game.state = "fight";
 		}
 	};
 
-	round(attacker,defender);
+	round(this.attacker, this.defender);
 
 	// var isStronger = function() {
 	// 	if ( ((this.getAttack) / 2 ) > ( target.getAttack ) ) {

@@ -57,11 +57,6 @@ Actor.prototype.isAlive = function() {
 	}
 };
 
-Actor.prototype.attack = function(target) {
-	var fight = new Fight();
-	fight.continue(this,target);
-};
-
 Actor.prototype.addStat = function(stat, quan) {
 	var currStat = this[stat];
 	this[stat] = currStat + quan;

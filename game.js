@@ -4,11 +4,6 @@ function Game(state) {
 
 Game.prototype.changeState = function(param) {
 	this.state = param;
-	if ( (param === "search") || (param === "fight") ) {
-		timer.tick(2000);
-	} else {
-		timer.tickStop();
-	}
 };
 
 // Game.prototype.fight = function(attacker, defender) {

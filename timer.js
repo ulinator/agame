@@ -5,7 +5,7 @@ function Timer(state, callback) {
 
 var nIntervId; // set interval id
 
-Timer.prototype.tick = function(interval) {
+Timer.prototype.start = function(interval) {
 	if (this.state === "paused") {
 		console.log("Play");
 		nIntervId = window.setInterval(this.callback, interval);
@@ -16,7 +16,7 @@ Timer.prototype.tick = function(interval) {
 	}
 };
 
-Timer.prototype.tickStop = function() {
+Timer.prototype.stop = function() {
 	if (this.state === "paused") {
 		console.log("Timer is already paused.");
 		return null;
