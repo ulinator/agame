@@ -64,12 +64,13 @@ function gameRound() {
 		}
 	} else if (game.state === "search") {
 		if (randomExpression < 66) {
+
 			monster = new Monster();
 			monster.createMon(hero["lvl"]);
 			game.changeState("fight");
 			game["fight"] = new Fight(hero, monster);
 			console.log("A wild " + monster.name + " appears!");
-		} else if (randomExpression < 100) {
+		} else if ( randomExpression < 100 ) {
 			console.log("You tread carefully through the dungeon...");
 			hero.healHP( hero["maxHP"]/15 );
 		}
