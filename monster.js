@@ -9,8 +9,8 @@ function Monster(name, str, dex, sta, int, wis, exp) {
 	this.HP = 10;
 }
 
-Monster.prototype.setHP = function(hp) {
-	this["HP"] = this["sta"] * 10 + hp;
+Monster.prototype.setHP = function() {
+	this["HP"] = this["sta"] * 5 + 10;
 };
 
 Monster.prototype.getAttack = function() {
@@ -37,5 +37,5 @@ Monster.prototype.createMon = function(quan) {
 	this.int = randomizer(quan/2, quan);
 	this.wis = randomizer(quan/2, quan);
 	this.exp = quan;
-	this.setHP(quan);
+	this.setHP();
 }

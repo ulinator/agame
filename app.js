@@ -54,18 +54,18 @@ function gameRound() {
 	// console.log("tick");
 	var randomExpression = randomizer(1,100);
 
-	if (game.state === "fight") {
+	if ( game.state === "fight" ) {
 		hero.attack(monster);
-		if (monster.isAlive()) {
+		if ( monster.isAlive() ) {
 			monster.attack(hero);  
 		}
 	} else {
-		if (randomExpression < 66) {
+		if ( randomExpression < 66 ) {
 			monster = new Monster();
 			monster.createMon(hero["lvl"]);
 			game["state"] = "fight";
 			console.log("A wild " + monster.name + " appears!");
-		} else if (randomExpression < 100) {
+		} else if ( randomExpression < 100 ) {
 			console.log("You tread carefully through the dungeon...");
 			hero.healHP( hero["maxHP"]/15 );
 		}
