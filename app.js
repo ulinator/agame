@@ -5,7 +5,7 @@ var hero = new Actor();
 var timer = new Timer("paused", gameRound);
 var statbar = new Stats();
 var displayLine = new Display();
-var nl = displayLine.new;
+var nl = displayLine.newLine;
 
 button.addEventListener("click", function() {
 	hero = createChar();

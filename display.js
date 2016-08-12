@@ -5,7 +5,6 @@ function Display(message) {
 	this.element.innerHTML = this.message;
 }
 
-Display.prototype.new = function(message) {
-	var newLine = new Display(message);
-    document.querySelector('#display').appendChild(newLine.element);
+Display.prototype.displayLine = function(location, message) {
+    document.querySelector('location').appendChild(this.element);
 };

@@ -81,8 +81,8 @@ Actor.prototype.addExp = function(quan) {
 
 Actor.prototype.levelUp = function(quan) {
 	if (this.spec === "Adventurer") {
-		this.addStat("str", quan);
-		this.addStat("dex", quan);
+		this.addStat("str", quan*1.3);
+		this.addStat("dex", quan*1.3);
 		this.addStat("sta", quan*2);
 		this.addStat("int", quan);
 		this.addStat("wis", quan);
