@@ -4,8 +4,8 @@ var game = new Game("inactive");
 var hero = new Actor();
 var timer = new Timer("paused", gameRound);
 var statbar = new Stats();
-var displayLine = new Display();
-var nl = displayLine.newLine;
+
+var display = new Display("#display");
 
 button.addEventListener("click", function() {
 	hero = createChar();
@@ -31,7 +31,7 @@ function createChar() {
 	var name = prompt("What is thy name?");
 	hero = new Actor();
 	hero.addName(name);
-	nl("Hero has a name: " + hero.name);
+	display.addLine("Hero has a name: " + hero.name);
 	return hero;
 };
 
@@ -71,9 +71,9 @@ function gameRound() {
 			monster.createMon(hero["lvl"]);
 			game.changeState("fight");
 			game["fight"] = new Fight(hero, monster);
-			nl("A wild " + monster.name + " appears!");
+			display.addLine("A wild " + monster.name + " appears!");
 		} else if ( randomExpression < 100 ) {
-			nl("You tread carefully through the dungeon...");
+			display.addLine("You tread carefully through the dungeon...");
 			hero.healHP( hero["maxHP"]/15 );
 		}
 	}

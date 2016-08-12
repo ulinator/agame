@@ -7,21 +7,21 @@ var nIntervId; // set interval id
 
 Timer.prototype.start = function(interval) {
 	if (this.state === "paused") {
-		nl("Play");
+		display.addLine("Play");
 		nIntervId = window.setInterval(this.callback, interval);
 		this.state = "active";
 	} else if (this.state === "active") {
-		nl("Timer is already running.");
+		display.addLine("Timer is already running.");
 		return null;
 	}
 };
 
 Timer.prototype.stop = function() {
 	if (this.state === "paused") {
-		nl("Timer is already paused.");
+		display.addLine("Timer is already paused.");
 		return null;
 	} else if (this.state === "active") {
-		nl("Pause");
+		display.addLine("Pause");
 		clearInterval(nIntervId);
 		this.state = "paused";
 	}

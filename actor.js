@@ -20,11 +20,11 @@ Actor.prototype.healHP = function(quan) {
 		return;
 	} else  {
 		this["HP"] = this["HP"] + quanFloored;
-		nl("You regenerate " + quanFloored + " HP.");
+		display.addLine("You regenerate " + quanFloored + " HP.");
 
 		if ( this["HP"] > this["maxHP"] ) {
 			this["HP"] = this["maxHP"];
-			nl("You regenerate to full, gangsta.");
+			display.addLine("You regenerate to full, gangsta.");
 		}
 	}
 };
@@ -71,11 +71,11 @@ Actor.prototype.addExp = function(quan) {
 	this["exp"] = this["exp"] + quan;
 
 	if (this["exp"] >= cap) {
-		nl("LEVEL UP!");
+		display.addLine("LEVEL UP!");
 		this.levelUp(1);
-		nl("You are now level: " + this["lvl"] + ".");
+		display.addLine("You are now level: " + this["lvl"] + ".");
 	} else {
-		nl("You gain: " + quan + " exp.");
+		display.addLine("You gain: " + quan + " exp.");
 	}
 };
 
