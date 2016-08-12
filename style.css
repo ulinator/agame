@@ -23,7 +23,7 @@ p {
 }
 
 .hero-stats div {
-display: idisplay.addLineine-block;
+display: inline-block;
 }
 
 .hero-stats .hero-name {
