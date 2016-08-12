@@ -34,4 +34,4 @@ Monster.prototype.createMon = function(quan) {
 	this.wis = randomizer(quan/2, quan);
 	this.exp = quan;
 	this.setHP();
-}
+};

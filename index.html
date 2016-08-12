@@ -10,10 +10,26 @@
 
 <div class="container">
 	<h1>Tha game</h1>
-	<button id="createChar">Create a new character</button>
-	<button id="startGame">Start the game</button>
-	<button id="pauseGame">Pause the game</button>
+	<section class="game-controls">
+		<button id="createChar">Create a new character</button>
+		<button id="startGame">Start the game</button>
+		<button id="pauseGame">Pause the game</button>
+	</section>
 
+	<section id="display" class="display">
+
+	</section>
+
+	<section class="hero-stats">
+		<div class="hero-name"><span id="stats-name">Unnamed</span> the <span id="stats-spec">Adventurer</span>.</div>
+		<div>HP: <span id="stats-HP">??</span> /
+		<span id="stats-maxHP">??</span></div>
+		<div>str: <span id="stats-str">??</span></div>
+		<div>dex: <span id="stats-dex">??</span></div>
+		<div>sta: <span id="stats-sta">??</span></div>
+		<div>exp: <span id="stats-exp">??</span></div>
+		<div>lvl: <span id="stats-lvl">??</span></div>
+	</section>
 </div>
 
 <script type="text/javascript" src="utils.js"></script> <!-- i.e. randomizer -->
@@ -23,6 +39,8 @@
 <script type="text/javascript" src="timer.js"></script>
 <script type="text/javascript" src="actor.js"></script>
 <script type="text/javascript" src="monster.js"></script>
+<script type="text/javascript" src="display.js"></script>
+<script type="text/javascript" src="statbar.js"></script>
 
 <script type="text/javascript" src="app.js"></script>
 

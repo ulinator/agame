@@ -1,15 +1,44 @@
 * {
-  font-family: sans-serif;
-  background: #101010;
-  color: white;
+	font-family: monospace;
+	background: #101010;
+	color: white;
+	margin: 0;
+	padding: 0;
 }
 
 h1, button {
-  text-align: center;
+	text-align: center;
+	margin: 10px 0;
+	padding: 6px 10px;
+}
+
+p {
+	padding: 3px 0;
 }
 
 .container {
-  height: 500px;
-  width: 600px;
-  margin: 10% auto;
+	height: 500px;
+	width: 800px;
+	margin: 100px auto;
+}
+
+.hero-stats div {
+display: inline-block;
+}
+
+.hero-stats .hero-name {
+	display: block;
+}
+
+.display {
+	overflow-y: scroll; /* duh */
+	height: 400px;
+	border-top: 1px solid white;
+	border-bottom: 1px solid white;
+	padding: 6px 0;
+	margin: 6px 0;
+
+
+.game-controls {
+	margin-bottom: 30px;
 }

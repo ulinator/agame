@@ -22,33 +22,33 @@ Fight.prototype.continue = function() {
 
 	var round = function(attacker, defender) {
 		var result = resolveRound(attacker,defender);
+		var displayLine = new Display();
+		var nl = displayLine.new;
 
 		if (result === attacker) {
-			console.log("=== YOU WON ===");
 			defender["HP"] = defender["HP"] - attDMG;
-			console.log("You hit " + monster.name + " for " + attDMG + "!");
+			nl("You hit " + monster.name + " for " + attDMG + "!");
 
 			if (defender["HP"] < 1) {
-				console.log("You killed the " + defender.name + ".");
+				nl("You killed the " + defender.name + ".");
 				attacker.addExp(defender["exp"]);
 			} else {
-				console.log("Monster is down to: " + defender["HP"] + " HP.");
+				nl("Monster is down to: " + defender["HP"] + " HP.");
 			};
 
 		} else if (result === defender)  {
-			console.log("monster won");
 			attacker["HP"] = attacker["HP"] - defDMG;
-			console.log("You got hit by " + monster.name + " for " + defDMG + ".");
+			nl("You got hit by " + monster.name + " for " + defDMG + ".");
 
 			if (attacker["HP"] < 1) {
-				console.log("You were mortally hit by " + defender.name + "...");
+				nl("You were mortally hit by " + defender.name + "...");
 				game.changeState("inactive");
-				console.log("...you died.");
+				nl("...you died.");
 			} else {
-				console.log("Your hp is down to: " + attacker["HP"] + ".");
+				nl("Your hp is down to: " + attacker["HP"] + ".");
 			};
 		} else {
-			console.log("You fight fiercely but not to prevail.");
+			nl("You fight fiercely but not to prevail.");
 		}
 	};
 

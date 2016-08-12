@@ -3,6 +3,9 @@ var button = document.querySelector("#createChar");
 var game = new Game("inactive");
 var hero = new Actor();
 var timer = new Timer("paused", gameRound);
+var statbar = new Stats();
+var displayLine = new Display();
+var nl = displayLine.new;
 
 button.addEventListener("click", function() {
 	hero = createChar();
@@ -22,14 +25,13 @@ buttonPause.addEventListener("click", function() {
 
 // CREATE MONSTER
 var monster = new Monster();
-console.log("Monster is: ", monster);
 
 // CREATE HERO
 function createChar() {
 	var name = prompt("What is thy name?");
 	hero = new Actor();
 	hero.addName(name);
-	console.log("Hero has a name:", hero.name);
+	nl("Hero has a name: " + hero.name);
 	return hero;
 };
 
@@ -63,16 +65,23 @@ function gameRound() {
 			game["fight"] = null;
 		}
 	} else if (game.state === "search") {
-		if (randomExpression < 66) {
+		if (randomExpression < 40) {
 
 			monster = new Monster();
 			monster.createMon(hero["lvl"]);
 			game.changeState("fight");
 			game["fight"] = new Fight(hero, monster);
-			console.log("A wild " + monster.name + " appears!");
+			nl("A wild " + monster.name + " appears!");
 		} else if ( randomExpression < 100 ) {
-			console.log("You tread carefully through the dungeon...");
+			nl("You tread carefully through the dungeon...");
 			hero.healHP( hero["maxHP"]/15 );
 		}
 	}
 };
+
+// UPDATE SCROLL TO TOP AND STATBAR INTERVAL
+window.setInterval(function() {
+	var objDiv = document.querySelector('#display');
+	objDiv.scrollTop = objDiv.scrollHeight;
+	statbar.Update();
+}, 20);
