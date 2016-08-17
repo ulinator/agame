@@ -46,7 +46,7 @@ Actor.prototype.getAttack = function() {
 };
 
 Actor.prototype.getDmg = function() {
-	return this["str"] + randomizer(1,6);
+	return Math.floor(this["str"]) + randomizer(1,6);
 };
 
 Actor.prototype.isAlive = function() {

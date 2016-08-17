@@ -18,7 +18,7 @@ Monster.prototype.getAttack = function() {
 };
 
 Monster.prototype.getDmg = function() {
-	return this["str"] + randomizer(1,6);
+	return Math.floor(this["str"]) + randomizer(1,6);
 };
 
 Monster.prototype.isAlive = function() {
