@@ -88,7 +88,7 @@ Actor.prototype.levelUp = function(quan) {
 		this.addStat("wis", quan);
 		this.addStat("lvl", quan);
 		this.setHP();
-		this.resetHP;
+		this.resetHP();
 	} else if (this.spec === "Barbarian") {
 		this.addStat("str", quan*1.5);
 		this.addStat("dex", quan*1.1);
@@ -97,6 +97,6 @@ Actor.prototype.levelUp = function(quan) {
 		this.addStat("wis", quan/2);
 		this.addStat("lvl", quan);
 		this.setHP();
-		this.resetHP;
+		this.resetHP();
 	};
 };
