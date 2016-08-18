@@ -1,8 +1,7 @@
 1. napisac timer window.setInterval(function, milliseconds);
  (z randomem?)
 2. dodac wybor klasy postaci
-
-4. dodac ekran (wyswietlacz)
+3. dodac losowanie potworow (JSON)
 
 5. dodac losowanie zdarzenia
 

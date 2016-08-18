@@ -25,7 +25,7 @@ Fight.prototype.continue = function() {
 
 		if (result === attacker) {
 			defender["HP"] = defender["HP"] - attDMG;
-			display.addLine("You hit " + monster.name + " for " + attDMG + "!");
+			display.addLine("You hit <mark>" + monster.name + "</mark> for " + attDMG + "!");
 
 			if (defender["HP"] < 1) {
 				display.addLine("You killed the " + defender.name + ".");
@@ -36,10 +36,10 @@ Fight.prototype.continue = function() {
 
 		} else if (result === defender)  {
 			attacker["HP"] = attacker["HP"] - defDMG;
-			display.addLine("You got hit by " + monster.name + " for " + defDMG + ".");
+			display.addLine("You got hit by <mark>" + monster.name + "</mark> for " + defDMG + ".");
 
 			if (attacker["HP"] < 1) {
-				display.addLine("You were mortally hit by " + defender.name + "...");
+				display.addLine("You were mortally hit by <mark>" + defender.name + "</span>...");
 				game.changeState("inactive");
 				display.addLine("...you died.");
 			} else {
@@ -51,13 +51,5 @@ Fight.prototype.continue = function() {
 	};
 
 	round(this.attacker, this.defender);
-
-	// var isStronger = function() {
-	// 	if ( ((this.getAttack) / 2 ) > ( target.getAttack ) ) {
-	// 		console.log("Crushing blow!");
-	// 		console.log(this.getAttack);
-	// 		return (this.getAttack * 2);
-	// 	}
-	// };
 
 };

@@ -16,6 +16,10 @@ p {
 	padding: 3px 0;
 }
 
+p mark {
+	color: red;
+}
+
 .container {
 	height: 500px;
 	width: 800px;
@@ -23,7 +27,7 @@ p {
 }
 
 .hero-stats div {
-display: inline-block;
+	display: inline-block;
 }
 
 .hero-stats .hero-name {

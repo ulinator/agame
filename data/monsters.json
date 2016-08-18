@@ -1,0 +1,12 @@
+var monsters = {
+
+    "goblin": {
+        "prefix": "weak",
+        "suffix": "peasant"
+    },
+
+    "orc": {
+        "prefix": "ragged",
+        "suffix": "camp boy"
+    },
+};

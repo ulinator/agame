@@ -71,7 +71,7 @@ function gameRound() {
 			monster.createMon(hero["lvl"]);
 			game.changeState("fight");
 			game["fight"] = new Fight(hero, monster);
-			display.addLine("A wild " + monster.name + " appears!");
+			display.addLine("A wild <mark>" + monster.name + "</mark> appears!");
 		} else if ( randomExpression < 100 ) {
 			display.addLine("You tread carefully through the dungeon...");
 			hero.healHP( hero["maxHP"]/15 );
