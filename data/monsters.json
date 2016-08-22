@@ -1,12 +1,5 @@
 var monsters = {
-
-    "goblin": {
-        "prefix": "weak",
-        "suffix": "peasant"
-    },
-
-    "orc": {
-        "prefix": "ragged",
-        "suffix": "camp boy"
-    },
+    "name": ["goblin", "orc", "hobgoblin", "black orc", "ogre", "troll" ],
+    "prefix": ["pathetic", "hungry", "weak", "skinny", "strong", "mighty"],
+    "suffix": ["peasant", "cook", "scout", "raider", "warrior", "chief"]
 };

@@ -26,10 +26,14 @@ Monster.prototype.isAlive = function() {
 };
 
 Monster.prototype.createMon = function(quan) {
-	if (quan < 2) {
-		this.name = "Goblin" + quan;
+	var rand1 = randomizer(0, 4);
+	var rand2 = randomizer(0, 4);
+	var rand3 = randomizer(0, 4);
+
+	if (quan < 5) {
+		this.name = monsters.prefix[rand1] + " " + monsters.name[rand2] + " " + monsters.suffix[rand3];
 	} else  {
-		this.name = "Orc" + quan;
+		this.name = monsters.prefix[rand1+1] + " " + monsters.name[rand2+1] + " " + monsters.suffix[rand3+1];
 	};
 	this.str = randomizer(quan/2, quan);
 	this.dex = randomizer(quan/2, quan);
