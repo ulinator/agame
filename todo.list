@@ -5,7 +5,7 @@
 
 5. dodac losowanie zdarzenia
 
-
+6. poprawic scrollowanie w dol co 20ms
 
 logika gry:
 co 5 sekund zdarzenie
