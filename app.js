@@ -6,7 +6,7 @@ var timer = new Timer("paused", gameRound);
 var statbar = new Stats();
 
 var display = new Display("#display");
-
+var renderer = new Renderer("#canvas");
 button.addEventListener("click", function() {
 	hero = createChar();
 });
@@ -29,9 +29,16 @@ var monster = new Monster();
 // CREATE HERO
 function createChar() {
 	var name = prompt("What is thy name?");
+  var image = document.querySelector("#barb");
+
 	hero = new Actor();
+
 	hero.addName(name);
+  hero.setPosition(0, 0);
+  hero.setImage(image);
+
 	display.addLine("Hero has a name: " + hero.name);
+  renderer.draw(hero);
 	return hero;
 };
 

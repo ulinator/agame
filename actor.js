@@ -10,6 +10,17 @@ function Actor(name, str, dex, sta, int, wis, exp, lvl, spec, HP, maxHP) {
 	this.spec = spec || "Adventurer";
 	this.HP = HP || 70;
 	this.maxHP = maxHP || 70;
+  this.x = 0;
+  this.y = 0;
+}
+
+Actor.prototype.setImage = function(image) {
+  this.image = image;
+}
+
+Actor.prototype.setPosition = function(x, y) {
+  this.x = x;
+  this.y = y;
 }
 
 Actor.prototype.healHP = function(quan) {
@@ -100,3 +111,7 @@ Actor.prototype.levelUp = function(quan) {
 		this.resetHP();
 	};
 };
+
+Actor.prototype.render = function(context) {
+  context.drawImage(this.image, this.x, this.y)
+}
