@@ -7,6 +7,17 @@ function Monster(name, str, dex, sta, int, wis, exp) {
 	this.wis = wis || 1;
 	this.exp = exp || 1;
 	this.HP = 10;
+	this.x = 250;
+	this.y = 0;
+}
+
+Monster.prototype.setImage = function(image) {
+	this.image = image;
+}
+
+Monster.prototype.setPosition = function(x, y) {
+	this.x = x;
+	this.y = y;
 }
 
 Monster.prototype.setHP = function() {
@@ -26,14 +37,18 @@ Monster.prototype.isAlive = function() {
 };
 
 Monster.prototype.createMon = function(quan) {
-	var rand1 = randomizer(0, 4);
-	var rand2 = randomizer(0, 4);
-	var rand3 = randomizer(0, 4);
+	var rand1 = randomizer(0, 5);
+	var rand2 = randomizer(0, 5);
+	var rand3 = randomizer(0, 5);
+ 	var image = document.querySelector("#gobl");
+ 	var image2 = document.querySelector("#orc1");
 
 	if (quan < 5) {
 		this.name = monsters.prefix[rand1] + " " + monsters.name[rand2] + " " + monsters.suffix[rand3];
+		this.setImage(image);
 	} else  {
 		this.name = monsters.prefix[rand1+1] + " " + monsters.name[rand2+1] + " " + monsters.suffix[rand3+1];
+		this.setImage(image2);
 	};
 	this.str = randomizer(quan/2, quan);
 	this.dex = randomizer(quan/2, quan);
@@ -42,4 +57,9 @@ Monster.prototype.createMon = function(quan) {
 	this.wis = randomizer(quan/2, quan);
 	this.exp = quan;
 	this.setHP();
+ 	renderer.draw(monster);
+};
+
+Monster.prototype.render = function(context) {
+	context.drawImage(this.image, this.x, this.y)
 };
